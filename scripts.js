@@ -5,40 +5,49 @@ const etanolEfficiency = document.getElementById('etanol-efficiency');
 
 const pricePerKmGas = document.getElementById('price-per-km-gas');
 const pricePerKmEtanol = document.getElementById('price-per-km-etanol');
+const resBestGas = document.getElementById('bestGas');
 
+var gas = 0;
+var efc = 0;
 
+gasPrice.addEventListener("keyup", () => { printGas(), bestGas() });
+gasEfficiency.addEventListener("keyup", () => { printGas(), bestGas() });
 
-gasPrice.addEventListener("keyup", () => {
-    calcEfficiencyGas()
-});
-gasEfficiency.addEventListener("keyup", () => {
-    calcEfficiencyGas()
-});
-etanolPrice.addEventListener("keyup", () => {
-    calcEfficiencyEtanol()
-});
-etanolEfficiency.addEventListener("keyup", () => {
-    calcEfficiencyEtanol()
-});
+etanolPrice.addEventListener("keyup", () => { printEtanol(), bestGas() });
+etanolEfficiency.addEventListener("keyup", () => { printEtanol(), bestGas() });
 
-
-
-
-function calcEfficiencyGas(){
-    const calcGas = Number(gasPrice.value)/Number(gasEfficiency.value)
-    if(calcGas!=Infinity && calcGas!=NaN){
-        pricePerKmGas.innerText = "R$: "+calcGas.toFixed(2)+" por KM"
-    }else{
-        pricePerKmGas.innerText = "R$: - por KM"
-    }
+function printGas(){
+    result = Number(calcEfficiency(gasPrice.value, gasEfficiency.value))
+    let num = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(result);
+    pricePerKmGas.innerText = "Gasolina "+num+" por KM"
+    return result
 }
-function calcEfficiencyEtanol(){
-    const calcEtanol = Number(etanolPrice.value)/Number(etanolEfficiency.value)
-    if(calcEtanol!=Infinity && calcEtanol!=NaN){
-        pricePerKmEtanol.innerText = "R$: "+calcEtanol.toFixed(2)+" por KM"
-    }else{
-        pricePerKmEtanol.innerText = "R$: - por KM"
-    }
+function printEtanol(){
+    result = Number(calcEfficiency(etanolPrice.value, etanolEfficiency.value))
+    let num = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(result);
+    pricePerKmEtanol.innerText = "Etanol "+num+" por KM"
+    return result
 }
 
+function calcEfficiency(gas, efc){
+    gas = parseFloat(gas.replace(',','.'));
+    efc = parseFloat(efc.replace(',','.'));
+    const calcGas = Number(gas)/Number(efc)
+    let result =0;
+    if(gas>0 && efc>0){
+        result = calcGas.toFixed(2)
+    }
+    console.log(result/10);
+    return result
+}
+function bestGas(){
+    let resulta
+    if(printGas()>0 && printEtanol()>0){
+        printGas()<printEtanol() ? resulta = "Gasolina" : resulta = "Alcool"
+    }
+    if(resulta != undefined){
+        resBestGas.style.opacity = 1;
+        resBestGas.innerText = `${resulta} é mais Eficiente`
+    }
 
+}

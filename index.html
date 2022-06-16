@@ -8,26 +8,40 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <div id="gas">
-        <p>Gasoline</p>
-        <label for="gas-price">Price</label>
-        <input type="number" id="gas-price">
-        <label for="gas-efficiency">km</label>
-        <input type="number" id="gas-efficiency">
+    <div class="center">
+        <h1 id="Gasolina">Gasolina</h1>
+        <div id="gas">
+            
+            <div class="item">
+                <label for="gas-price">Preço</label>
+                <input type="text" id="gas-price" placeholder="R$ 0,00">
+            </div>
+            <div class="item">
+                <label for="gas-efficiency">Consumo</label>
+                <input type="text" id="gas-efficiency" placeholder="10 km/Litro">
+            </div>
+        </div>
+        <h1 id="Etanol">Etanol</h1>
+        <div id="etanol">
+            
+            <div class="item">
+                <label for="etanol-price">Preço</label>
+                <input type="text" id="etanol-price" placeholder="R$ 0,00">
+            </div>
+            
+            <div class="item">
+                <label for="etanol-efficiency">Consumo</label>
+                <input type="text" id="etanol-efficiency" placeholder="10 km/Litro">
+            </div>
+        </div>
+        <div class="result">
+            <h2 class="resultItem" id="price-per-km-gas">Gasolina R$ 0,00 por KM</h2>
+            <h2 class="resultItem" id="price-per-km-etanol">Etanol R$ 0,00 por KM</h2>
+            <h1 class="resultItem" id="bestGas">Teste</h1>
+        </div>
     </div>
     
-    <div id="etanol">
-        <p>Etanol</p>
-        <label for="etanol-price">Price</label>
-        <input type="number" id="etanol-price">
-        <label for="etanol-efficiency">km</label>
-        <input type="number" id="etanol-efficiency">
-    </div>
     
-
-    <h1 id="price-per-km-gas">R$: - por KM</h1>
-    <h1 id="price-per-km-etanol">R$: - por KM</h1>
 
     <script src="./scripts.js"></script>
 </body>
