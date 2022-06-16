@@ -1,0 +1,1 @@
+Este é um projeto com a finalidade de deixar a escolha entre gasolina e alcool ainda mais facil, apartir do preço, e consumo do veiculo em cada situação
